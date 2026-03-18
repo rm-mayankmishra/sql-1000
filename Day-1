@@ -1,0 +1,64 @@
+| id | name | salary | department |
+| -- | ---- | ------ | ---------- |
+| 1  | A    | 50000  | HR         |
+| 2  | B    | 60000  | IT         |
+| 3  | C    | 55000  | HR         |
+| 4  | D    | 70000  | IT         |
+| 5  | E    | 45000  | HR         |
+
+✅ Question 1
+
+Task:
+Get names of employees with salary > 50000, sorted by salary (descending)
+
+✔ Solution:
+SELECT name
+FROM Employees
+WHERE salary > 50000
+ORDER BY salary DESC;
+
+
+✅ Question 2
+
+Task:
+Find average salary per department
+
+✔ Solution:
+SELECT department, AVG(salary) AS avg_salary
+FROM Employees
+GROUP BY department;
+
+
+✅ Question 3
+
+Task:
+Count employees in each department where count > 2
+
+✔ Solution:
+SELECT department, COUNT(*) AS employee_count
+FROM Employees
+GROUP BY department
+HAVING COUNT(*) > 2;
+
+
+✅ Question 4
+
+Task:
+Find highest salary in each department
+
+✔ Solution:
+SELECT department, MAX(salary) AS max_salary
+FROM Employees
+GROUP BY department;
+
+
+✅ Question 5
+
+Task:
+Find departments where average salary > 55000
+
+✔ Solution:
+SELECT department, AVG(salary) AS avg_salary
+FROM Employees
+GROUP BY department
+HAVING AVG(salary) > 55000;
