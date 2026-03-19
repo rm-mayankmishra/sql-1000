@@ -1,0 +1,65 @@
+🗂️ Table: Employees
+id	name	salary	department	joining_date
+1	A	50000	HR	2020-01-10
+2	B	60000	IT	2019-03-15
+3	C	55000	HR	2021-06-20
+4	D	70000	IT	2018-07-11
+5	E	45000	HR	2022-02-01
+✅ Question 1
+
+Task:
+Employees who joined after 1 Jan 2020, sorted by joining date
+
+✔ Solution:
+SELECT name, joining_date
+FROM Employees
+WHERE joining_date > '2020-01-01'
+ORDER BY joining_date ASC;
+✅ Question 2
+
+Task:
+Total salary per department where total > 100000
+
+✔ Solution:
+SELECT department, SUM(salary) AS total_salary
+FROM Employees
+GROUP BY department
+HAVING SUM(salary) > 100000;
+✅ Question 3
+
+Task:
+Number of employees hired each year
+
+✔ Solution:
+SELECT YEAR(joining_date) AS year, COUNT(*) AS employee_count
+FROM Employees
+GROUP BY YEAR(joining_date);
+✅ Question 4
+
+Task:
+Employees earning more than average salary
+
+✔ Solution:
+SELECT name, salary
+FROM Employees
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM Employees
+);
+✅ Question 5
+
+Task:
+Second highest salary
+
+✔ Solution (Subquery):
+SELECT MAX(salary)
+FROM Employees
+WHERE salary < (
+    SELECT MAX(salary)
+    FROM Employees
+);
+✔ Alternative:
+SELECT DISTINCT salary
+FROM Employees
+ORDER BY salary DESC
+LIMIT 1 OFFSET 1;
